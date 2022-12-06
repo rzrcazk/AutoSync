@@ -11,7 +11,7 @@ dest_repo=$3
 params=$4
 
 commit(){
-    git config user.email " 41898282+github-actions[bot]@users.noreply.github.com"
+    git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
     git config user.name "Auto Update Bot"
     git add .
     git commit -am "Update"
