@@ -10,7 +10,7 @@ on:
       - '.github/workflows/Repo-Sync.yaml'
 
   schedule:
-    - cron: 3-53/10 * * * *
+    - cron: 3-53/11 * * * *
 
 jobs:
   sync-scripts:
@@ -56,6 +56,24 @@ jobs:
         run: |
           bash Scripts/Sync.sh \
             https://github.com/OreosLab/checkinpanel master \
-            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/checkinpanel main    
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/checkinpanel main  
+
+      - name: QL-
+        run: |
+          bash Scripts/Sync.sh \
+            https://github.com/shidahuilang/QL- main \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/QL- main    
+          
+      - name: algorithm-structure
+        run: |
+          bash Scripts/Sync.sh \
+            https://github.com/0voice/algorithm-structure master \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/algorithm-structure main    
+          
+      - name: weixin-java-cp-demo
+        run: |
+          bash Scripts/Sync.sh \
+            https://github.com/binarywang/weixin-java-cp-demo master \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/weixin-java-cp-demo main 
           
           
