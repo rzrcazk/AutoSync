@@ -13,77 +13,7 @@ on:
     - cron: 3-53/10 * * * *
 
 jobs:
-  microsoft-365-admin:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Sleep Random Time
-        run: sleep $(shuf -i 10-60 -n 1)
-      - uses: actions/checkout@v2
-      - name: Github ➡ Github
-        id: microsoft-365-admin-update
-        run: |
-          dir=$(pwd)
-          bash Scripts/Sync.sh \
-            https://github.com/6mb/Microsoft-365-Admin master \
-            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/Microsoft-365-Admin keep
-          [ -f /tmp/update ] && mv /tmp/dest_repo $dir || echo "::set-output name=status::updated"
-      - name: Set up Docker Buildx
-        if: steps.microsoft-365-admin-update.outputs.status != 'updated'
-        uses: docker/setup-buildx-action@v1
-      - name: Github Docker Login
-        if: steps.microsoft-365-admin-update.outputs.status != 'updated'
-        uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: rzrcazk
-          password: ${{ secrets.ACTION_SECRET }}
-      - name: Build and push
-        if: steps.microsoft-365-admin-update.outputs.status != 'updated'
-        uses: docker/build-push-action@v2
-        with:
-          context: ./dest_repo
-          file: ./dest_repo/Dockerfile
-          platforms: linux/amd64
-          push: true
-          tags: |
-            ghcr.io/rzrcazk/microsoft-365-admin:latest
-
-  jd-panel:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Sleep Random Time
-        run: sleep $(shuf -i 10-60 -n 1)
-      - uses: actions/checkout@v2
-      - name: Github ➡ Github
-        id: jd-panel-update
-        run: |
-          dir=$(pwd)
-          bash Scripts/Sync.sh \
-            https://github.com/whyour/qinglong master \
-            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/JD-Panel keep
-          [ -f /tmp/update ] && mv /tmp/dest_repo $dir || echo "::set-output name=status::updated"
-      - name: Set up Docker Buildx
-        if: steps.jd-panel-update.outputs.status != 'updated'
-        uses: docker/setup-buildx-action@v1
-      - name: Github Docker Login
-        if: steps.jd-panel-update.outputs.status != 'updated'
-        uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: rzrcazk
-          password: ${{ secrets.ACTION_SECRET }}
-      - name: Build and push
-        if: steps.jd-panel-update.outputs.status != 'updated'
-        uses: docker/build-push-action@v2
-        with:
-          context: ./dest_repo
-          file: ./dest_repo/docker/Dockerfile
-          platforms: linux/amd64
-          push: true
-          tags: |
-            ghcr.io/rzrcazk/jd-panel:latest
-
-  jd-scripts:
+  sync-scripts:
     runs-on: ubuntu-latest
     steps:
       - name: Sleep Random Time
@@ -97,3 +27,35 @@ jobs:
           bash Scripts/Sync.sh \
             https://github.com/shufflewzc/faker2 main \
             https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/faker2 main
+
+      - name: Faker3
+        run: |
+          bash Scripts/Sync.sh \
+            https://github.com/shufflewzc/faker3 main \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/faker3 main 
+
+      - name: HarbourToulu
+        run: |
+          bash Scripts/Sync.sh \
+            https://github.com/HarbourJ/HarbourToulu main \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/HarbourToulu main
+
+      - name: bbk
+        run: |
+          bash Scripts/Sync.sh \
+            https://github.com/neUyNp8OIdO4Ejj/bbk_bak main \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/bbk main
+
+      - name: tbk
+        run: |
+          bash Scripts/Sync.sh \
+            https://github.com/pea-cake/tbk main \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/tbk main
+
+      - name: checkinpanel
+        run: |
+          bash Scripts/Sync.sh \
+            https://github.com/OreosLab/checkinpanel master \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/checkinpanel main    
+          
+          
