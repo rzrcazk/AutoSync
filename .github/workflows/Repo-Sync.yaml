@@ -43,7 +43,7 @@ jobs:
       - name: bbk
         run: |
           bash Scripts/Sync.sh \
-            https://github.com/neUyNp8OIdO4Ejj/bbk_bak main \
+            https://github.com/neUyNp8OIdO4Ejj/bbk_bak.git master \
             https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/bbk main
 
       - name: tbk
