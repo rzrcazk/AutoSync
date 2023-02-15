@@ -80,5 +80,5 @@ jobs:
         run: |
           bash Scripts/Sync.sh \
             https://github.com/Naccl/NBlog.git master \
-            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/NBlog main    
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/NBlog main    
           
