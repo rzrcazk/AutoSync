@@ -10,7 +10,7 @@ on:
       - '.github/workflows/Repo-Sync.yaml'
 
   schedule:
-    - cron: 3-53/11 * * * *
+    - cron: 3 */12 * * *
 
 jobs:
   sync-scripts:
