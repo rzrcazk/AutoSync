@@ -88,7 +88,7 @@ jobs:
             https://github.com/Yidadaa/ChatGPT-Next-Web main \
             https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/ChatGPT-Next-Web main
 
-      - name: ChatGPT-Next-Web
+      - name: awesome-chatgpt-prompts-zh
         run: |
           bash Scripts/Sync.sh \
             https://github.com/PlexPt/awesome-chatgpt-prompts-zh main \
