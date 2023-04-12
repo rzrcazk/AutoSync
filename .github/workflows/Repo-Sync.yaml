@@ -76,9 +76,20 @@ jobs:
             https://github.com/binarywang/weixin-java-cp-demo master \
             https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/weixin-java-cp-demo main 
 
-      - name: NBlog
+      - name: NotionNext
         run: |
           bash Scripts/Sync.sh \
-            https://github.com/Naccl/NBlog.git master \
-            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/NBlog main    
-          
+            https://github.com/tangly1024/NotionNext main \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/NotionNext main 
+
+      - name: ChatGPT-Next-Web
+        run: |
+          bash Scripts/Sync.sh \
+            https://github.com/Yidadaa/ChatGPT-Next-Web main \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/ChatGPT-Next-Web main
+
+      - name: ChatGPT-Next-Web
+        run: |
+          bash Scripts/Sync.sh \
+            https://github.com/PlexPt/awesome-chatgpt-prompts-zh main \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/awesome-chatgpt-prompts-zh main
