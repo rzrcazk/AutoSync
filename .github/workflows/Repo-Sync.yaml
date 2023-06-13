@@ -98,9 +98,9 @@ jobs:
           bash Scripts/Sync.sh \
             https://github.com/adams549659584/go-proxy-bingai.git master \
             https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/go-proxy-bingai master
-      - name: pandora-vercel
+      - name: pandora-cloud-serverless
         run: |
           bash Scripts/Sync.sh \
-            https://github.com/chrysoljq/pandora-vercel.git master \
-            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/pandora-vercel master       
+            https://github.com/pengzhile/pandora-cloud-serverless master \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/pandora-cloud-serverless master       
             
