@@ -63,8 +63,6 @@ if [ -d "/tmp/source_repo" ]; then
             mv node_modules /tmp
         fi
     fi
-
-    rm -f README*
     commit
 
     echo
