@@ -58,11 +58,12 @@ jobs:
             https://github.com/OreosLab/checkinpanel master \
             https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/checkinpanel main  
 
-      - name: QL-
+      - name: BiliBiliToolPro
         run: |
           bash Scripts/Sync.sh \
-            https://github.com/shidahuilang/QL- main \
-            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/QL- main    
+            https://github.952712.xyz/RayWangQvQ/BiliBiliToolPro main \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/BiliBiliToolPro main      
+
           
       - name: algorithm-structure
         run: |
@@ -70,11 +71,6 @@ jobs:
             https://github.com/0voice/algorithm-structure master \
             https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/algorithm-structure main    
           
-      - name: weixin-java-cp-demo
-        run: |
-          bash Scripts/Sync.sh \
-            https://github.com/binarywang/weixin-java-cp-demo master \
-            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/weixin-java-cp-demo main 
 
       - name: NotionNext
         run: |
@@ -88,19 +84,4 @@ jobs:
             https://github.com/Yidadaa/ChatGPT-Next-Web main \
             https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/ChatGPT-Next-Web main
 
-      - name: awesome-chatgpt-prompts-zh
-        run: |
-          bash Scripts/Sync.sh \
-            https://github.com/PlexPt/awesome-chatgpt-prompts-zh main \
-            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/awesome-chatgpt-prompts-zh main
-      - name: go-proxy-bingai-vercel
-        run: |
-          bash Scripts/Sync.sh \
-            https://github.com/adams549659584/go-proxy-bingai.git master \
-            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/go-proxy-bingai master
-      - name: pandora-cloud-serverless
-        run: |
-          bash Scripts/Sync.sh \
-            https://github.com/pengzhile/pandora-cloud-serverless master \
-            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/pandora-cloud-serverless master       
-            
+  
