@@ -27,3 +27,8 @@ jobs:
           bash Scripts/Sync.sh \
             https://github.com/OreosLab/checkinpanel master \
             https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/checkinpanel main
+      - name: Merge main into master
+        run: |
+          git checkout master
+          git merge -X theirs main
+          git push origin master
