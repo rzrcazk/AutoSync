@@ -1,0 +1,29 @@
+name: Repo Sync HarbourToulu
+
+on:
+  workflow_dispatch:
+
+  push:
+    branches:
+      - 'main'
+    paths:
+      - '.github/workflows/Repo-Sync-HarbourToulu.yaml'
+
+  schedule:
+    - cron: 15 */2 * * *
+
+jobs:
+  sync-scripts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sleep Random Time
+        run: sleep $(shuf -i 10-60 -n 1)
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 'lts/*'
+      - name: HarbourToulu
+        run: |
+          bash Scripts/Sync.sh \
+            https://github.com/HarbourJ/HarbourToulu main \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/HarbourToulu main

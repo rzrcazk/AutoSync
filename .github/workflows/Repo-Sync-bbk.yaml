@@ -1,0 +1,29 @@
+name: Repo Sync bbk
+
+on:
+  workflow_dispatch:
+
+  push:
+    branches:
+      - 'main'
+    paths:
+      - '.github/workflows/Repo-Sync-bbk.yaml'
+
+  schedule:
+    - cron: 10 */2 * * *
+
+jobs:
+  sync-scripts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sleep Random Time
+        run: sleep $(shuf -i 10-60 -n 1)
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 'lts/*'
+      - name: bbk
+        run: |
+          bash Scripts/Sync.sh \
+            https://github.com/neUyNp8OIdO4Ejj/bbk_bak.git master \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/bbk main
