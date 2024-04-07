@@ -27,3 +27,8 @@ jobs:
           bash Scripts/Sync.sh \
             https://github.952712.xyz/RayWangQvQ/BiliBiliToolPro main \
             https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/BiliBiliToolPro main
+      - name: Merge main into master
+        run: |
+          git checkout master
+          git merge -X theirs main
+          git push origin master
