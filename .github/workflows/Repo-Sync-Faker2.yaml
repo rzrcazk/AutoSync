@@ -14,6 +14,14 @@ jobs:
   sync-scripts:
     runs-on: ubuntu-latest
     steps:
+      - name: Create repository
+        run: |
+          repo_exists=$(curl -H "Authorization: token ${{ secrets.ACTION_SECRET }}" \
+            https://api.github.com/repos/${{ github.repository_owner }}/faker2 | jq -r .name)
+          if [[ "$repo_exists" != "faker2" ]]; then
+            curl -X POST -H "Authorization: token ${{ secrets.ACTION_SECRET }}" \
+              https://api.github.com/user/repos -d '{"name":"faker2"}'
+          fi
       - name: Sleep Random Time
         run: sleep $(shuf -i 10-60 -n 1)
       - uses: actions/checkout@v2
@@ -24,7 +32,7 @@ jobs:
         run: |
           bash Scripts/Sync.sh \
             https://github.com/shufflewzc/faker2 main \
-            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/faker2 main
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/xmlySpeed/faker2 main
       - name: Merge main into master
         run: |
           git checkout master
