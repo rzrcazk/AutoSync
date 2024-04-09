@@ -7,7 +7,7 @@ on:
     branches:
       - 'main'
     paths:
-      - '.github/workflows/Repo-Sync-tbk.yaml'
+      - '.github/workflows/Repo-Sync-deeplx.yaml'
 
   schedule:
     - cron: 20 */24 * * *
@@ -19,10 +19,10 @@ jobs:
       - name: Create repository
         run: |
           repo_exists=$(curl -H "Authorization: token ${{ secrets.ACTION_SECRET }}" \
-            https://api.github.com/repos/${{ github.repository_owner }}/tbk | jq -r .name)
-          if [[ "$repo_exists" != "tbk" ]]; then
+            https://api.github.com/repos/${{ github.repository_owner }}/vercel-deeplx | jq -r .name)
+          if [[ "$repo_exists" != "vercel-deeplx" ]]; then
             curl -X POST -H "Authorization: token ${{ secrets.ACTION_SECRET }}" \
-              https://api.github.com/user/repos -d '{"name":"tbk"}'
+              https://api.github.com/user/repos -d '{"name":"vercel-deeplx"}'
           fi
       - name: Sleep Random Time
         run: sleep $(shuf -i 10-60 -n 1)
@@ -33,5 +33,5 @@ jobs:
       - name: tbk
         run: |
           bash Scripts/Sync.sh \
-            https://github.com/pea-cake/tbk main \
-            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/tbk main
+            https://github.com/xiaozhou26/vercel-deeplx main \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/vercel-deeplx main
