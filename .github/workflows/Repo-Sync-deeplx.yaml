@@ -1,4 +1,4 @@
-name: Repo Sync tbk
+name: Repo Sync deeplx
 
 on:
   workflow_dispatch:
