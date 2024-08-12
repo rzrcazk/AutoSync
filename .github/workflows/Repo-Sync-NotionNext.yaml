@@ -14,14 +14,13 @@ jobs:
   sync-scripts:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout your repository
+      - name: Checkout source repository
         uses: actions/checkout@v2
         with:
+          repository: tangly1024/NotionNext
           ref: main
 
-      - name: Force sync with upstream repository
+      - name: Force sync to target repository
         run: |
-          git remote add upstream https://github.com/tangly1024/NotionNext.git
-          git fetch upstream main
-          git reset --hard upstream/main
-          git push origin main --force
+          git remote add target https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/NotionNext.git
+          git push target main --force
