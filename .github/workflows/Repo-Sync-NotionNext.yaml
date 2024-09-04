@@ -2,25 +2,28 @@ name: Repo Sync NotionNext
 
 on:
   workflow_dispatch:
+
   push:
     branches:
       - 'main'
     paths:
       - '.github/workflows/Repo-Sync-NotionNext.yaml'
+
   schedule:
-    - cron: '38 */4 * * *'
+    - cron: 38 */4 * * *
 
 jobs:
   sync-scripts:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout source repository
-        uses: actions/checkout@v2
+      - name: Sleep Random Time
+        run: sleep $(shuf -i 10-60 -n 1)
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
         with:
-          repository: tangly1024/NotionNext
-          ref: main
-
-      - name: Force sync to target repository
+          node-version: 'lts/*'
+      - name: NotionNext
         run: |
-          git remote add target https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/NotionNext.git
-          git push target main --force
+          bash Scripts/Sync.sh \
+            https://github.com/tangly1024/NotionNext.git main \
+            https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/NotionNext.git main
