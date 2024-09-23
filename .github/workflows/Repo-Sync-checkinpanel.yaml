@@ -16,6 +16,14 @@ jobs:
   sync-scripts:
     runs-on: ubuntu-latest
     steps:
+      - name: Create repository if not exists
+        run: |
+          repo_exists=$(curl -H "Authorization: token ${{ secrets.ACTION_SECRET }}" \
+            https://api.github.com/repos/${{ github.repository_owner }}/checkinpanel | jq -r .name)
+          if [[ "$repo_exists" != "checkinpanel" ]]; then
+            curl -X POST -H "Authorization: token ${{ secrets.ACTION_SECRET }}" \
+              https://api.github.com/user/repos -d '{"name":"checkinpanel"}'
+          fi
       - name: Sleep Random Time
         run: sleep $(shuf -i 10-60 -n 1)
       - uses: actions/checkout@v2
@@ -25,10 +33,5 @@ jobs:
       - name: checkinpanel
         run: |
           bash Scripts/Sync.sh \
-            https://github.com/OreosLab/checkinpanel master \
+            https://github.com/OreosLab/checkinpanel main \
             https://${{ github.repository_owner }}:${{ secrets.ACTION_SECRET }}@github.com/rzrcazk/checkinpanel main
-      - name: Merge main into master
-        run: |
-          git checkout master
-          git merge -X theirs main
-          git push origin master
